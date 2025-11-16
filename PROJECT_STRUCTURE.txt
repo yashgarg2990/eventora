@@ -1,0 +1,83 @@
+EVENTORA - Complete Project Structure
+
+project/
+├── backend/                           # Express.js Backend (already existing)
+│   ├── config/
+│   │   └── db.js                     # MongoDB connection
+│   ├── controllers/
+│   │   ├── EventController.js        # Event management APIs
+│   │   ├── ServiceController.js      # Service CRUD APIs (fixed route ordering)
+│   │   └── userController.js         # User auth APIs
+│   ├── middlewares/
+│   │   └── userAuth.js               # JWT authentication middleware
+│   ├── models/
+│   │   ├── Event.js                  # Event schema
+│   │   ├── Service.js                # Service schema
+│   │   └── User.js                   # User schema
+│   ├── routes/
+│   │   └── index.js                  # Main router
+│   └── utils/
+│       ├── uploadToS3.js             # S3 image upload
+│       └── generatePassword.js       # Password generator
+│
+└── frontend/                          # React Frontend (NEW)
+    ├── public/                       # Static assets
+    ├── src/
+    │   ├── api/
+    │   │   └── axios.js              # Axios configuration
+    │   ├── components/
+    │   │   └── Navbar.jsx            # Navigation bar with role-based menu
+    │   ├── context/
+    │   │   └── AuthContext.jsx       # Global auth state management
+    │   ├── pages/
+    │   │   ├── Home.jsx              # Landing page
+    │   │   ├── Login.jsx             # Login page
+    │   │   ├── Register.jsx          # Registration page
+    │   │   ├── Services.jsx          # Browse all services (search/filter)
+    │   │   ├── ServiceDetail.jsx     # Individual service details
+    │   │   ├── client/
+    │   │   │   ├── ClientEvents.jsx  # Client's event list
+    │   │   │   └── CreateEvent.jsx   # Create new event booking
+    │   │   └── vendor/
+    │   │       ├── VendorDashboard.jsx  # Vendor's service list
+    │   │       └── AddService.jsx       # Add new service form
+    │   ├── App.jsx                   # Main app with routing
+    │   ├── main.jsx                  # Entry point
+    │   └── index.css                 # Tailwind CSS imports
+    ├── .env                          # Environment variables
+    ├── tailwind.config.js            # Tailwind configuration
+    ├── postcss.config.js             # PostCSS configuration
+    ├── vite.config.js                # Vite configuration
+    └── package.json                  # Dependencies
+
+Key Features Implemented:
+
+CLIENT SIDE:
+✓ User registration and login
+✓ Browse services with search and category filter
+✓ View detailed service information
+✓ Create events and select multiple services
+✓ View all personal events
+✓ Role-based protected routes
+
+VENDOR SIDE:
+✓ Vendor registration and login
+✓ Vendor dashboard to manage services
+✓ Add new services with photos
+✓ Edit and delete services
+✓ Role-based protected routes
+
+AUTHENTICATION:
+✓ JWT-based authentication with cookies
+✓ Role-based access control (client/vendor)
+✓ Protected routes
+✓ Auto-redirect based on user role
+✓ Auth context for global state
+
+UI/UX:
+✓ Clean, modern design with Tailwind CSS
+✓ Responsive layouts
+✓ Loading states
+✓ Error handling
+✓ Form validations
+✓ Hover effects and transitions

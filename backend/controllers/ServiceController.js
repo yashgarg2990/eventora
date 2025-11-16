@@ -42,16 +42,7 @@ router.delete('/', isLoggedIn, async (req, res) => {
   } catch (e) { res.status(500).json(e.message); }
 });
 
-// Get service by id
-router.get('/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const service = await Service.findById(id).populate('vendor', 'name email phone city');
-    res.status(200).json(service);
-  } catch (e) { res.status(500).json(e.message); }
-});
-
-// Get services for vendor account
+// Get services for vendor account - MUST be before /:id route
 router.get('/account', isLoggedIn, async (req, res) => {
   try {
     const vendorId = req.user.id;
@@ -76,6 +67,15 @@ router.get('/', async (req, res) => {
       .populate('vendor', 'name city rating');
     res.json(services);
   } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Get service by id - MUST be last
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const service = await Service.findById(id).populate('vendor', 'name email phone city');
+    res.status(200).json(service);
+  } catch (e) { res.status(500).json(e.message); }
 });
 
 export default router;
